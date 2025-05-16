@@ -2,3 +2,4 @@
 
 apt-get update #обновление списка пакетов
 apt-get install python3-module-openstackclient  python3-module-octaviaclient python3-module-neutronclient  python3-module-novaclient -y
+chmod 777 /etc/hosts
