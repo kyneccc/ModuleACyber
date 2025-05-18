@@ -20,4 +20,4 @@ openstack network delete {br-net,srv-net,isp-br,isp-hq,cli-net,mgmt} --insecure
 openstack keypair delete MgVM --insecure
 
 #удаление серверов
-openstack server delete {HQ-CLI,BR-SRV,HQ-SRV,BR-RTR} --insecure
+openstack server delete {HQ-CLI,BR-SRV,HQ-SRV,BR-RTR,HQ-RTR} --insecure
