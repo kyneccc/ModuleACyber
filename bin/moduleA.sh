@@ -86,7 +86,7 @@ openstack server add port BR-SRV srv-br --insecure
 
 #Запись в файл /etc/hosts
 echo '10.100.100.101	 hq-rtr' >> /etc/hosts
-echo ''10.100.100.102	hq-srv  >> /etc/hosts
+echo '10.100.100.102'	hq-srv  >> /etc/hosts
 echo '10.100.100.103	hq-cli' >> /etc/hosts
 echo '10.100.100.104	br-rtr' >> /etc/hosts
 echo '10.100.100.105	br-srv' >> /etc/hosts
