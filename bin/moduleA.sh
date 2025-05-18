@@ -16,8 +16,7 @@ sudo netplan  apply 2>/dev/null
 
 sleep 20
 
-#Добавление ssh ключа для достпа к всем инстансам стенда
-openstack keypair create --public-key /home/altlinux/.ssh/id_rsa.pub MgVM --insecure
+#
 #Создание необходимых сетей
 openstack network create isp-hq  --insecure
 openstack network create isp-br  --insecure
@@ -72,6 +71,9 @@ openstack server create --flavor start  --port br-srv --image alt-server-10.4-p1
 openstack server create --flavor medium  --port hq-cli --image alt-workstation-10.4-p10-cloud-x86_64.qcow2 --boot-from-volume 15 --key-name MgVM HQ-CLI --insecure
 
 sleep 70
+
+Добавление ssh ключа для достпа к всем инстансам стенда
+openstack keypair create --public-key /home/altlinux/.ssh/id_rsa.pub MgVM --insecure
 
 #Добавление необходимых портов к серверам
 openstack server add port HQ-RTR isp-to-hq --insecure
