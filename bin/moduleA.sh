@@ -1,5 +1,20 @@
 #!/bin/bash
+
+cd /home/altlinux/ModuleACyber/bin
 source ./con.conf
+
+openstack network create mgmt  --insecure
+openstack subnet create --subnet-range 10.100.100.0/24 --dhcp --network mgmt mgmtsub --insecure
+openstack port create --network mgmt --fixed-ip ip-address=10.100.100.15 adminport --insecure
+openstack server add port $1 adminport --insecure
+
+sudo chmod 666 /etc/netplan/50-cloud-init.yaml
+sudo echo '        eth1:' >> /etc/netplan/50-cloud-init.yaml
+sudo echo '            dhcp4: true' >> /etc/netplan/50-cloud-init.yaml
+sudo chmod 600 /etc/netplan/50-cloud-init.yaml
+sudo netplan  apply 2>/dev/null
+
+sleep 20
 
 #Добавление ssh ключа для достпа к всем инстансам стенда
 openstack keypair create --public-key /home/altlinux/.ssh/id_rsa.pub MgVM --insecure
@@ -56,7 +71,7 @@ openstack server create --flavor start  --port br-srv --image alt-server-10.4-p1
 #Создание hq-cli
 openstack server create --flavor medium  --port hq-cli --image alt-workstation-10.4-p10-cloud-x86_64.qcow2 --boot-from-volume 15 --key-name MgVM HQ-CLI --insecure
 
-sleep 60
+sleep 70
 
 #Добавление необходимых портов к серверам
 openstack server add port HQ-RTR isp-to-hq --insecure
