@@ -14,7 +14,7 @@ sudo echo '            dhcp4: true' >> /etc/netplan/50-cloud-init.yaml
 sudo chmod 600 /etc/netplan/50-cloud-init.yaml
 sudo netplan  apply 2>/dev/null
 
-sleep 20
+sleep 40
 
 
 #Создание необходимых сетей
