@@ -1,7 +1,12 @@
 #!/bin/bash
 
+if [ -z "$1" ]; then
+  echo "Введите имя виртуальной машины(не хостнейм)"
+  exit 1
+fi
 cd /home/altlinux/ModuleACyber/bin
 source ./con.conf
+
 
 openstack network create mgmt  --insecure
 openstack subnet create --subnet-range 10.100.100.0/24 --dhcp --network mgmt mgmtsub --insecure
