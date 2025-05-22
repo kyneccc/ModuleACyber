@@ -53,6 +53,9 @@ openstack port create --network mgmt --fixed-ip ip-address=10.100.100.103 hq-cli
 openstack port create --network mgmt --fixed-ip ip-address=10.100.100.104 br-rtr --insecure 
 openstack port create --network mgmt --fixed-ip ip-address=10.100.100.105 br-srv --insecure
 
+#Добавление ssh ключа для достпа к всем инстансам стенда
+openstack keypair create --public-key /home/altlinux/.ssh/id_rsa.pub MgVM --insecure
+
 #Создание hq-rtr
 openstack server create --flavor start  --port hq-rtr --image alt-server-10.4-p10-cloud-x86_64.qcow2 --boot-from-volume 10 --key-name MgVM HQ-RTR --insecure
 
@@ -72,8 +75,7 @@ openstack server create --flavor medium  --port hq-cli --image alt-workstation-1
 
 sleep 70
 
-#Добавление ssh ключа для достпа к всем инстансам стенда
-openstack keypair create --public-key /home/altlinux/.ssh/id_rsa.pub MgVM --insecure
+
 
 #Добавление необходимых портов к серверам
 openstack server add port HQ-RTR isp-to-hq --insecure
